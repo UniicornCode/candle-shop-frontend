@@ -1,0 +1,25 @@
+.bg {
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.candles-bg {
+    background-image: url("../images/candles.jpg");
+    background-size: cover;
+    height: 80vh;
+    border-radius: 10px;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.bg-darkcyan {
+    background-color: darkcyan;
+}
+
+.font-darksalmon {
+    color: darksalmon;
+}
