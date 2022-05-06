@@ -9,7 +9,8 @@ class CandleList extends Component {
         super(props);
         this.state = {
             page: 0,
-            size: 3
+            size: 3,
+            candle: 0
         }
     }
 
@@ -58,6 +59,11 @@ class CandleList extends Component {
         })
     }
 
+    add = (candle) => {
+        this.props.addToCart(candle)
+        window.location.reload();
+    }
+
     getCandlesPage = (offset, nextPageOffset) => {
         return this.props.candles.map((term) => {
             return (
@@ -74,7 +80,7 @@ class CandleList extends Component {
                             }
                         </ul>
                         <h6>{term.price} ден.</h6>
-                        <a href="#" className="btn btn-primary float-end mt-auto">Додади во кошничка</a>
+                        <button onClick={() => this.add(term.id)} className="btn btn-primary float-end mt-auto">Додади во кошничка</button>
                     </div>
                 </div>
             )

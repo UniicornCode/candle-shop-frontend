@@ -1,8 +1,19 @@
 import "../../styles/main.css"
-import React from 'react';
+import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 
 const header = (props) => {
+
+    const logOut = () => {
+        props.logOut();
+    }
+
+    const check = () => {
+        if (props.currentUser !== undefined) {
+            return <div className={"mt-1"}>Username: {props.currentUser.username}</div>
+        }
+    }
+
     return (
         <nav className="navbar navbar-expand-md bg-darkcyan">
             <div className="container">
@@ -37,10 +48,11 @@ const header = (props) => {
                                 Предлози
                             </Link>
                         </li>
+                        {check()}
                         <li className="nav-item mx-1">
-                            <Link className="btn btn-light btn-sm ml-3 card" to={"/logout"}>
-                                <i className="fa fa-shopping-cart"></i> Одјава
-                            </Link>
+                            <a href="/login" className="btn btn-light btn-sm ml-3" onClick={logOut}>
+                                Одјава
+                            </a>
                         </li>
                     </ul>
                 </div>

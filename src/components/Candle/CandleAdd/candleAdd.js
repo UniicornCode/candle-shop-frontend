@@ -20,9 +20,11 @@ const CandleAdd = (props) => {
         })
         let options = e.target.options;
         let materials = [];
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].selected) {
-                materials.push(options[i].value)
+        if(options !== undefined) {
+            for (let i = 0; i < options.length; i++) {
+                if (options[i].selected) {
+                    materials.push(options[i].value)
+                }
             }
         }
         updateMaterialsInCandle(materials);
@@ -36,6 +38,7 @@ const CandleAdd = (props) => {
 
         props.onAddCandle(price, name, imgUrl, materialsInCandle);
         navigate("/candles");
+        window.location.reload();
     }
 
     return (

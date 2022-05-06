@@ -20,6 +20,13 @@
     background-color: darkcyan;
 }
 
+.dark-salmon {
+    background-color: darksalmon;
+}
+
 .font-darksalmon {
     color: darksalmon;
+}
+.salmon:hover {
+    background-color: darksalmon;
 }
