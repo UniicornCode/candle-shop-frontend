@@ -27,7 +27,7 @@ const Register = (props) => {
         const name = formData.name;
         const surname = formData.surname;
         const password = formData.password;
-        const role = formData.role;
+        const role = formData.role !== "" ? formData.role : "ROLE_USER";
         const address = formData.address;
 
         props.onRegister(username, name, surname, password, role, address);
@@ -42,6 +42,8 @@ const Register = (props) => {
                         <label className="form-label" htmlFor="username">Username</label>
                         <input type="text"
                                id="username"
+                               name={"username"}
+                               required
                                className="form-control"
                                onChange={handleChange}
                         />
@@ -51,6 +53,8 @@ const Register = (props) => {
                         <label className="form-label" htmlFor="name">Name</label>
                         <input type="text"
                                id="name"
+                               name={"name"}
+                               required
                                className="form-control"
                                onChange={handleChange}
                         />
@@ -60,6 +64,8 @@ const Register = (props) => {
                         <label className="form-label" htmlFor="surname">Surname</label>
                         <input type="text"
                                id="surname"
+                               name={"surname"}
+                               required
                                className="form-control"
                                onChange={handleChange}
                         />
@@ -69,6 +75,8 @@ const Register = (props) => {
                         <label className="form-label" htmlFor="password">Password</label>
                         <input type="password"
                                id="password"
+                               name={"password"}
+                               required
                                className="form-control"
                                onChange={handleChange}
                         />
@@ -76,7 +84,7 @@ const Register = (props) => {
 
                     <div className="form-group mb-3">
                         <label htmlFor={"role"}>Roles</label>
-                        <select name="role" className="form-control" onChange={handleChange}>
+                        <select name={"role"} className="form-control" required onChange={handleChange}>
                             {props.roles.map((term) =>
                                 <option value={term.valueOf()}>{term.valueOf()}</option>
                             )}
@@ -87,12 +95,15 @@ const Register = (props) => {
                         <label className="form-label" htmlFor="address">Address</label>
                         <input type="text"
                                id="address"
+                               name={"address"}
+                               required
                                className="form-control"
                                onChange={handleChange}
                         />
                     </div>
 
-                    <button type="button" id={"submit"} className="btn btn-primary btn-block mb-4">Register</button>
+                    <button type="button" id="submit" onClick={onFormSubmit} className="btn btn-primary mb-4">
+                        Register</button>
 
                     <div className="text-center">
                         <p>Already a member? <Link to={"/login"}>Sign in</Link></p>

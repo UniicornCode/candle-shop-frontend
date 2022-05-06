@@ -17,7 +17,7 @@ const header = (props) => {
     return (
         <nav className="navbar navbar-expand-md bg-darkcyan">
             <div className="container">
-                <Link className="navbar-brand font-darksalmon" to={"/home"}><b>Свеќара</b></Link>
+                <Link className="navbar-brand font-darksalmon salmon" to={"/home"}><b>Свеќара</b></Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarsExampleDefault"
                         aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,28 +29,28 @@ const header = (props) => {
                     <ul className="nav navbar-nav navbar-right">
 
                         <li className="nav-item mx-1">
-                            <Link className="btn btn-light btn-sm ml-3" to={"/candles"}>
+                            <Link className="btn btn-light btn-darksalmon btn-sm ml-3" to={"/candles"}>
                                 Свеќи
                             </Link>
                         </li>
                         <li className="nav-item mx-1">
-                            <Link className="btn btn-light btn-sm ml-3" to={"/shopping-cart"}>
+                            <Link className="btn btn-light btn-darksalmon btn-sm ml-3" to={"/shopping-cart"}>
                                 Кошничка
                             </Link>
                         </li>
                         <li className="nav-item mx-1">
-                            <Link className="btn btn-light btn-sm ml-3" to={"/orders"}>
+                            <Link className="btn btn-light btn-darksalmon btn-sm ml-3" to={"/orders"}>
                                 Нарачки
                             </Link>
                         </li>
                         <li className="nav-item mx-1">
-                            <Link className="btn btn-light btn-sm ml-3" to={"/suggestions"}>
+                            <Link className="btn btn-light btn-darksalmon btn-sm ml-3" to={"/suggestions"}>
                                 Предлози
                             </Link>
                         </li>
                         {check()}
                         <li className="nav-item mx-1">
-                            <a href="/login" className="btn btn-light btn-sm ml-3" onClick={logOut}>
+                            <a href="/login" className="btn btn-light btn-darksalmon btn-sm ml-3" onClick={logOut}>
                                 Одјава
                             </a>
                         </li>

@@ -27,6 +27,22 @@
 .font-darksalmon {
     color: darksalmon;
 }
-.salmon:hover {
+.font-darksalmon:hover {
+    color: white;
+}
+.btn-darkcyan {
+    background-color: darkcyan;
+}
+.btn-darkcyan:hover {
+    background-color: darksalmon !important;
+}
+.btn-darksalmon:hover {
     background-color: darksalmon;
+    border-color: darksalmon;
+    color: white;
+}
+.btn-darksalmon:active {
+    background-color: darksalmon !important;
+    border-color: darksalmon !important;
+    color: white;
 }

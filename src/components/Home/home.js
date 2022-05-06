@@ -18,15 +18,11 @@ const home = (props) => {
                             и љубов, со цел да задоволат сечиј вкус</p>
                     </div>
                 </div>
-                <div className={"salmon"}>
-                    <Link className={"text-white float-end btn btn-primary bg-darkcyan mb-3"} to={"/register"}>
-                        <h5>Регистрирај се</h5></Link>
-                </div>
-                <div className={"salmon"}>
-                    <Link className={"text-white float-end btn btn-primary bg-darkcyan mb-3"} to={"/login"}>
-                        <h5>Најави се</h5>
-                    </Link>
-                </div>
+                <Link className={"text-white float-end btn salmon btn-outline-light bg-darkcyan"} to={"/register"}>
+                    <h5>Регистрирај се</h5></Link>
+                <Link className={"text-white btn btn-darkcyan"} to={"/login"}>
+                    <h5>Најави се</h5>
+                </Link>
             </div>
         </div>
     )

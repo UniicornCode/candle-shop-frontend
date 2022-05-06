@@ -120,7 +120,6 @@ class App extends Component {
     register(username, name, surname, password, role, address) {
         ECandleRepository.registerUser(username, name, surname, password, role, address)
             .then(() => {
-                this.loadCandles();
             })
     }
 
@@ -172,19 +171,22 @@ class App extends Component {
     createOrder() {
         ECandleRepository.createOrder()
             .then(() => {
-            })
+                window.location.reload();
+            });
     }
 
     addToCart(candle) {
         ECandleRepository.addToShoppingCart(candle)
             .then(() => {
-            })
+                window.location.reload();
+            });
     }
 
     addCandle(price, name, imgUrl, materials) {
         ECandleRepository.addCandle(price, name, imgUrl, materials)
             .then(() => {
-            })
+                window.location.reload();
+            });
     }
 }
 

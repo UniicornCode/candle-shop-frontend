@@ -37,7 +37,7 @@ const ECandleRepository = {
         }, { headers: authHeader() })
     },
     registerUser: (username, name, surname, password, role, address) => {
-        return axios.post("/signup", {
+        return axios.post("/auth/signup", {
             "username": username,
             "name": name,
             "surname": surname,
