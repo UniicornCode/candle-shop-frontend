@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import ECandlesRepository from "../../../repository/eCandlesRepository";
 import AuthService from "../../../sevices/auth.service";
+import Popover from "bootstrap/js/src/popover";
 
 class CandleList extends Component {
 
@@ -88,7 +89,10 @@ class CandleList extends Component {
                             }
                         </ul>
                         <h6>{term.price} ден.</h6>
-                        <button onClick={() => this.add(term.id)} className="btn btn-darkcyan float-end mt-auto">Додади во кошничка</button>
+                        <button onClick={() => this.add(term.id)}
+                                className="btn btn-darkcyan float-end mt-auto">
+                            Додади во кошничка
+                        </button>
                         {this.check(term.id)}
                     </div>
                 </div>

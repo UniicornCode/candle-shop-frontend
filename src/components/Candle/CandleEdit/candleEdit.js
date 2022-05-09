@@ -40,19 +40,6 @@ const CandleEdit = (props) => {
         navigate("/candles");
     }
 
-    const selectedMaterials = async () => {
-        const array = await props.selectedCandle;
-        console.log(array)
-        props.materials.map((term) => {
-            array.forEach(element => {
-                if (element.id === term.id) {
-                    return <option selected={element.id}
-                                   value={term.id}>{term.material}</option>
-                } else return <option value={term.id}>{term.material}</option>
-            })
-        })
-    }
-
     return (
         <div className="row py-5 full-height">
             <div className="col-md-4 offset-4 mt-5">
@@ -90,7 +77,20 @@ const CandleEdit = (props) => {
                     <div className="form-group">
                         <label htmlFor={"materialsInCandle"} className={"mx-1"}>Материјали</label>
                         <select name="materialsInCandle" className="form-control my-2" multiple onChange={handleChange}>
-                            {selectedMaterials}
+                            {props.materials.map((term) =>
+                                <option value={term.id}>{term.material}</option>
+                            )}
+                            {/*{*/}
+                            {/*    props.materials.map(async (term) => {*/}
+                            {/*        let array = await props.selectedCandle;*/}
+                            {/*        array.materials.map((element) => {*/}
+                            {/*            if (element.id === term.id) {*/}
+                            {/*                return <option selected={element.id}*/}
+                            {/*                               value={term.id}>{term.material}</option>*/}
+                            {/*            } else return <option value={term.id}>{term.material}</option>*/}
+                            {/*        })*/}
+                            {/*    })*/}
+                            {/*}*/}
                         </select>
                     </div>
                     <button id="submit" type="submit" className="btn btn-darkcyan my-3">Промени</button>
