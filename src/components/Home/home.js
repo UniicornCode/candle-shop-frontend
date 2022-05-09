@@ -18,9 +18,9 @@ const home = (props) => {
                             и љубов, со цел да задоволат сечиј вкус</p>
                     </div>
                 </div>
-                <Link className={"text-white float-end btn salmon btn-outline-light bg-darkcyan"} to={"/register"}>
+                <Link className={"float-end btn btn-darkcyan"} to={"/register"}>
                     <h5>Регистрирај се</h5></Link>
-                <Link className={"text-white btn btn-darkcyan"} to={"/login"}>
+                <Link className={"btn btn-darkcyan"} to={"/login"}>
                     <h5>Најави се</h5>
                 </Link>
             </div>

@@ -45,6 +45,11 @@ const ECandleRepository = {
             "role": role,
             "address": address
         }, { headers: authHeader() })
+    },
+    addSuggestion: (text) => {
+        return axios.post("/suggestions", {
+            "text": text
+        }, { headers: authHeader() })
     }
 }
 

@@ -14,7 +14,7 @@ const shoppingCart = (props) => {
     return (
         <div className={"full-height row"}>
             <div className={"col-6 offset-3 mt-5"}>
-                <table className={"table table-responsive mt-5"}>
+                <table className={"table table-striped table-light table-responsive mt-5"}>
                     <thead>
                     <tr>
                         <th>Свеќи во кошничка:</th>
@@ -30,7 +30,7 @@ const shoppingCart = (props) => {
                     }
                     </tbody>
                 </table>
-                <button className={"btn btn-outline-primary float-end my-3"}
+                <button className={"btn btn-darkcyan float-end my-3"}
                     onClick={createOrder}>Креирај нарачка</button>
             </div>
         </div>

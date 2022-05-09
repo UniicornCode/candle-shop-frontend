@@ -29,15 +29,15 @@ class CandleList extends Component {
                 <ReactPaginate
                     containerClassName="pagination justify-content-center"
                     breakClassName="page-item"
-                    breakLabel={<a className="page-link">...</a>}
+                    breakLabel={<a className="page-link font-darkcyan">...</a>}
                     previousLabel={"<<"}
                     nextLabel={">>"}
                     pageClassName="page-item"
                     previousClassName="page-item"
                     nextClassName="page-item"
-                    pageLinkClassName="page-link"
-                    previousLinkClassName="page-link"
-                    nextLinkClassName="page-link"
+                    pageLinkClassName="page-link font-darkcyan"
+                    previousLinkClassName="page-link font-darkcyan"
+                    nextLinkClassName="page-link font-darkcyan"
                     activeClassName="active"
                     pageCount={pageCount}
                     marginPagesDisplayed={2}
@@ -46,7 +46,7 @@ class CandleList extends Component {
                 />
 
                 <div className={"d-flex justify-content-end pb-5"}>
-                    <Link className={"btn btn-primary"} to={"/candles/add"}>Додади свеќа</Link>
+                    <Link className={"btn btn-darkcyan"} to={"/candles/add"}>Додади свеќа</Link>
                 </div>
             </div>
         )
@@ -80,7 +80,7 @@ class CandleList extends Component {
                             }
                         </ul>
                         <h6>{term.price} ден.</h6>
-                        <button onClick={() => this.add(term.id)} className="btn btn-primary float-end mt-auto">Додади во кошничка</button>
+                        <button onClick={() => this.add(term.id)} className="btn btn-darkcyan float-end mt-auto">Додади во кошничка</button>
                     </div>
                 </div>
             )

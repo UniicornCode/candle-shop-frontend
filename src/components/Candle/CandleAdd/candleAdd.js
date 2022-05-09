@@ -43,34 +43,32 @@ const CandleAdd = (props) => {
 
     return (
         <div className="row py-5 full-height">
-            <div className="col-md-5">
+            <div className="col-md-4 offset-4 mt-5">
                 <form onSubmit={onFormSubmit} id={"addCandleForm"} name={"addCandleForm"}>
                     <div className="form-group">
-                        <label htmlFor="name">Product name</label>
+                        <label htmlFor="name" className={"mx-1"}>Име на свеќа</label>
                         <input type="text"
-                               className="form-control"
+                               className="form-control my-2"
                                id="name"
                                name="name"
                                required
-                               placeholder="Enter product name"
                                onChange={handleChange}
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="price">Price</label>
+                        <label htmlFor="price" className={"mx-1"}>Цена</label>
                         <input type="text"
-                               className="form-control"
+                               className="form-control my-2"
                                id="price"
                                name="price"
-                               placeholder="Price"
                                required
                                onChange={handleChange}
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="imgUrl">Image URL</label>
+                        <label htmlFor="imgUrl" className={"mx-1"}>URL од слика</label>
                         <input type="text"
-                               className="form-control"
+                               className="form-control my-2"
                                id="imgUrl"
                                name="imgUrl"
                                required
@@ -78,14 +76,14 @@ const CandleAdd = (props) => {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor={"materialsInCandle"}>Materials</label>
-                        <select name="materialsInCandle" className="form-control" multiple onChange={handleChange}>
+                        <label htmlFor={"materialsInCandle"} className={"mx-1"}>Материјали</label>
+                        <select name="materialsInCandle" className="form-control my-2" multiple onChange={handleChange}>
                             {props.materials.map((term) =>
                                 <option value={term.id}>{term.material}</option>
                             )}
                         </select>
                     </div>
-                    <button id="submit" type="submit" className="btn btn-primary">Submit</button>
+                    <button id="submit" type="submit" className="btn btn-darkcyan my-3">Додади</button>
                 </form>
             </div>
         </div>

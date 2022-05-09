@@ -36,10 +36,10 @@ const Register = (props) => {
 
     return (
         <div className="row py-5 full-height">
-            <div className="col-md-5">
+            <div className="col-md-4 offset-4">
                 <form onSubmit={onFormSubmit} id={"registerForm"} name={"registerForm"}>
                     <div className="form-outline mb-3">
-                        <label className="form-label" htmlFor="username">Username</label>
+                        <label className="form-label" htmlFor="username">Корисничко име</label>
                         <input type="text"
                                id="username"
                                name={"username"}
@@ -50,7 +50,7 @@ const Register = (props) => {
                     </div>
 
                     <div className="form-outline mb-3">
-                        <label className="form-label" htmlFor="name">Name</label>
+                        <label className="form-label" htmlFor="name">Име</label>
                         <input type="text"
                                id="name"
                                name={"name"}
@@ -61,7 +61,7 @@ const Register = (props) => {
                     </div>
 
                     <div className="form-outline mb-3">
-                        <label className="form-label" htmlFor="surname">Surname</label>
+                        <label className="form-label" htmlFor="surname">Презиме</label>
                         <input type="text"
                                id="surname"
                                name={"surname"}
@@ -72,7 +72,7 @@ const Register = (props) => {
                     </div>
 
                     <div className="form-outline mb-3">
-                        <label className="form-label" htmlFor="password">Password</label>
+                        <label className="form-label" htmlFor="password">Лозинка</label>
                         <input type="password"
                                id="password"
                                name={"password"}
@@ -83,16 +83,17 @@ const Register = (props) => {
                     </div>
 
                     <div className="form-group mb-3">
-                        <label htmlFor={"role"}>Roles</label>
-                        <select name={"role"} className="form-control" required onChange={handleChange}>
+                        <label htmlFor={"role"}>Улога</label>
+                        <select name={"role"} className="form-control mt-2" required onChange={handleChange}>
                             {props.roles.map((term) =>
-                                <option value={term.valueOf()}>{term.valueOf()}</option>
+                                <option value={term.valueOf()}>
+                                    {term.valueOf() === "ROLE_ADMIN" ? "Администратор" : "Корисник"}</option>
                             )}
                         </select>
                     </div>
 
                     <div className="form-outline mb-3">
-                        <label className="form-label" htmlFor="address">Address</label>
+                        <label className="form-label" htmlFor="address">Адреса</label>
                         <input type="text"
                                id="address"
                                name={"address"}
@@ -102,11 +103,13 @@ const Register = (props) => {
                         />
                     </div>
 
-                    <button type="button" id="submit" onClick={onFormSubmit} className="btn btn-primary mb-4">
-                        Register</button>
+                    <div className={"text-center mb-3"}>
+                    <button type="button" id="submit" onClick={onFormSubmit} className="btn btn-darkcyan my-2">
+                        Регистрирај се</button>
+                    </div>
 
                     <div className="text-center">
-                        <p>Already a member? <Link to={"/login"}>Sign in</Link></p>
+                        <p>Веќе сте регистрирани?<Link to={"/login"} className={"btn btn-darkcyan mx-2"}>Најави се</Link></p>
                     </div>
                 </form>
             </div>

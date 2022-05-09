@@ -9,15 +9,27 @@ const header = (props) => {
     }
 
     const check = () => {
-        if (props.currentUser !== undefined) {
-            return <div className={"mt-1"}>Username: {props.currentUser.username}</div>
+        if (props.user !== undefined) {
+            return <div className={"mt-1 mx-3"}>Корисник: <span className={"fw-bold font-darksalmon"}>{props.user.username}</span></div>
+        }
+    }
+
+    const login_logout = () => {
+        if (props.user !== undefined) {
+            return (
+                <span>Одјава</span>
+            )
+        } else {
+            return  (
+                <span>Најави се</span>
+            )
         }
     }
 
     return (
         <nav className="navbar navbar-expand-md bg-darkcyan">
             <div className="container">
-                <Link className="navbar-brand font-darksalmon salmon" to={"/home"}><b>Свеќара</b></Link>
+                <Link className="navbar-brand font-darksalmon" to={"/home"}><b>Свеќара</b></Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarsExampleDefault"
                         aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,13 +40,16 @@ const header = (props) => {
 
                     <ul className="nav navbar-nav navbar-right">
 
+                        <li className={"nav-item mx-1 text-white"}>
+                            {check()}
+                        </li>
                         <li className="nav-item mx-1">
-                            <Link className="btn btn-light btn-darksalmon btn-sm ml-3" to={"/candles"}>
+                            <Link className="btn btn-darksalmon btn-sm ml-3" to={"/candles"}>
                                 Свеќи
                             </Link>
                         </li>
                         <li className="nav-item mx-1">
-                            <Link className="btn btn-light btn-darksalmon btn-sm ml-3" to={"/shopping-cart"}>
+                            <Link className="btn btn-darksalmon btn-sm ml-3" to={"/shopping-cart"}>
                                 Кошничка
                             </Link>
                         </li>
@@ -48,10 +63,9 @@ const header = (props) => {
                                 Предлози
                             </Link>
                         </li>
-                        {check()}
                         <li className="nav-item mx-1">
                             <a href="/login" className="btn btn-light btn-darksalmon btn-sm ml-3" onClick={logOut}>
-                                Одјава
+                                {login_logout()}
                             </a>
                         </li>
                     </ul>

@@ -14,6 +14,8 @@ import OrderList from "../Order/orderList";
 import AuthService from "../../sevices/auth.service";
 import EventBus from "../UserAuthentication/EventBus";
 import ProtectedRoute from "../UserAuthentication/ProtectedRoute";
+import SuggestionAdd from "../Suggestion/SuggestionAdd/suggestionAdd";
+import SuggestionList from "../Suggestion/SuggestionList/suggestionList";
 
 class App extends Component {
 
@@ -25,7 +27,8 @@ class App extends Component {
             roles: [],
             shoppingCart: [],
             orders: [],
-            currentUser: undefined
+            currentUser: undefined,
+            suggestions: []
         }
     }
 
@@ -49,36 +52,43 @@ class App extends Component {
                                 } />
                                 <Route exact path={"/register"} element={
                                     <Register roles={this.state.roles}
-                                              onRegister={this.register}
-                                    />
+                                              onRegister={this.register}/>
                                 }/>
                                 <Route exact path={"/candles"} element={
                                     <ProtectedRoute>
                                         <CandleList candles={this.state.candles}
                                                     materials={this.state.materials}
-                                                    addToCart={this.addToCart}
-                                    /></ProtectedRoute>
+                                                    addToCart={this.addToCart}/>
+                                    </ProtectedRoute>
                                 }/>
                                 <Route exact path={"/candles/add"} element={
                                     <ProtectedRoute>
-                                    <CandleAdd candles={this.state.candles}
-                                               materials={this.state.materials}
-                                               onAddCandle={this.addCandle}
-                                    /></ProtectedRoute>
+                                        <CandleAdd candles={this.state.candles}
+                                                   materials={this.state.materials}
+                                                   onAddCandle={this.addCandle}/>
+                                    </ProtectedRoute>
                                 }/>
                                 <Route exact path={"/shopping-cart"} element={
                                     <ProtectedRoute>
-                                    <ShoppingCart cart={this.state.shoppingCart}
-                                                  onCreateOrder={this.createOrder}
-                                    />
+                                        <ShoppingCart cart={this.state.shoppingCart}
+                                                      onCreateOrder={this.createOrder}/>
                                     </ProtectedRoute>
                                 }/>
                                 <Route exact path={"/orders"} element={
                                     <ProtectedRoute>
-                                    <OrderList orders={this.state.orders}/>
+                                        <OrderList orders={this.state.orders}/>
                                     </ProtectedRoute>
                                 }/>
-
+                                <Route exact path={"/suggestions"} element={
+                                    <ProtectedRoute>
+                                        <SuggestionList suggestions={this.state.suggestions}/>
+                                    </ProtectedRoute>
+                                }/>
+                                <Route exact path={"/suggestions/add"} element={
+                                    <ProtectedRoute>
+                                        <SuggestionAdd onAddSuggestion={this.addSuggestion}/>
+                                    </ProtectedRoute>
+                                }/>
                             </Routes>
                         </div>
                     </div>
@@ -99,11 +109,13 @@ class App extends Component {
         EventBus.on("logout", () => {
             this.logOut();
         });
+
         this.loadCandles();
         this.loadMaterials();
         this.loadRoles();
         this.loadOrders();
         this.loadShoppingCart();
+        this.loadSuggestions();
     }
 
     componentWillUnmount() {
@@ -168,6 +180,15 @@ class App extends Component {
             })
     }
 
+    loadSuggestions() {
+        ECandleRepository.fetchSuggestions()
+            .then((data) => {
+                this.setState({
+                    suggestions: data.data
+                })
+            })
+    }
+
     createOrder() {
         ECandleRepository.createOrder()
             .then(() => {
@@ -187,6 +208,13 @@ class App extends Component {
             .then(() => {
                 window.location.reload();
             });
+    }
+
+    addSuggestion(text) {
+        ECandleRepository.addSuggestion(text)
+            .then(() => {
+                window.location.reload();
+            })
     }
 }
 
