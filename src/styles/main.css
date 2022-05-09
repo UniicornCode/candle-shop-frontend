@@ -14,7 +14,7 @@
     height: 100vh;
 }
 .bg-darkcyan {
-    background-color: darkcyan;
+    background-color: darkcyan !important;
 }
 .bg-darksalmon {
     background-color: darksalmon;
@@ -50,21 +50,22 @@
 .btn-darksalmon {
     background-color: white;
 }
-.btn-darksalmon:hover {
+.btn-darksalmon:hover, .btn-darksalmon-active,
+.btn-darksalmon-active:hover, .btn-darksalmon-active:focus {
     background-color: darksalmon;
     border-color: darksalmon;
     color: white;
-}
-.btn-darksalmon:active {
-    background-color: darksalmon !important;
-    border-color: darksalmon !important;
-    color: white;
+    box-shadow: none;
 }
 .form-control:focus {
     border-color: darkcyan;
     box-shadow: 0 0 0 0.2rem rgba(100, 150, 150, 0.25);
 }
-.nav-item > .active {
-    background-color: darksalmon !important;
-    outline-color: salmon;
+.page-focus:focus {
+    background-color: darkcyan;
+    color: white;
+    box-shadow: none;
+}
+.btn-darkcyan:focus {
+    box-shadow: none;
 }

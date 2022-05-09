@@ -1,6 +1,6 @@
 import "../../styles/main.css"
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
 const header = (props) => {
 
@@ -44,29 +44,44 @@ const header = (props) => {
                             {check()}
                         </li>
                         <li className="nav-item mx-1">
-                            <Link className="btn btn-darksalmon btn-sm ml-3" to={"/candles"}>
+                            <NavLink className={({ isActive }) =>
+                                    (isActive ? 'btn btn-darksalmon-active btn-sm ml-3' :
+                                    'btn btn-darksalmon btn-sm ml-3')}
+                                     to={"/candles"}>
                                 Свеќи
-                            </Link>
+                            </NavLink>
                         </li>
                         <li className="nav-item mx-1">
-                            <Link className="btn btn-darksalmon btn-sm ml-3" to={"/shopping-cart"}>
+                            <NavLink className={({ isActive }) =>
+                                    (isActive ? 'btn btn-darksalmon-active btn-sm ml-3' :
+                                    'btn btn-darksalmon btn-sm ml-3')}
+                                     to={"/shopping-cart"}>
                                 Кошничка
-                            </Link>
+                            </NavLink>
                         </li>
                         <li className="nav-item mx-1">
-                            <Link className="btn btn-light btn-darksalmon btn-sm ml-3" to={"/orders"}>
+                            <NavLink className={({ isActive }) =>
+                                    (isActive ? 'btn btn-darksalmon-active btn-sm ml-3' :
+                                    'btn btn-darksalmon btn-sm ml-3')}
+                                     to={"/orders"}>
                                 Нарачки
-                            </Link>
+                            </NavLink>
                         </li>
                         <li className="nav-item mx-1">
-                            <Link className="btn btn-light btn-darksalmon btn-sm ml-3" to={"/suggestions"}>
+                            <NavLink className={({ isActive }) =>
+                                    (isActive ? 'btn btn-darksalmon-active btn-sm ml-3' :
+                                    'btn btn-darksalmon btn-sm ml-3')}
+                                     to={"/suggestions"}>
                                 Предлози
-                            </Link>
+                            </NavLink>
                         </li>
                         <li className="nav-item mx-1">
-                            <a href="/login" className="btn btn-light btn-darksalmon btn-sm ml-3" onClick={logOut}>
+                            <NavLink className={({ isActive }) =>
+                                    (isActive ? 'btn btn-darksalmon-active btn-sm ml-3' :
+                                    'btn btn-darksalmon btn-sm ml-3')}
+                                     to="/login" onClick={logOut}>
                                 {login_logout()}
-                            </a>
+                            </NavLink>
                         </li>
                     </ul>
                 </div>

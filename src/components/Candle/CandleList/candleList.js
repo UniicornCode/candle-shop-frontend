@@ -2,6 +2,8 @@ import "../../../styles/main.css"
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import ReactPaginate from "react-paginate";
+import ECandlesRepository from "../../../repository/eCandlesRepository";
+import AuthService from "../../../sevices/auth.service";
 
 class CandleList extends Component {
 
@@ -10,8 +12,10 @@ class CandleList extends Component {
         this.state = {
             page: 0,
             size: 3,
-            candle: 0
+            candle: 0,
+            currentUser: {}
         }
+
     }
 
     render () {
@@ -29,25 +33,29 @@ class CandleList extends Component {
                 <ReactPaginate
                     containerClassName="pagination justify-content-center"
                     breakClassName="page-item"
-                    breakLabel={<a className="page-link font-darkcyan">...</a>}
+                    breakLabel={<a className="page-link font-darkcyan page-focus">...</a>}
                     previousLabel={"<<"}
                     nextLabel={">>"}
                     pageClassName="page-item"
                     previousClassName="page-item"
                     nextClassName="page-item"
-                    pageLinkClassName="page-link font-darkcyan"
-                    previousLinkClassName="page-link font-darkcyan"
-                    nextLinkClassName="page-link font-darkcyan"
-                    activeClassName="active"
+                    pageLinkClassName="page-link font-darkcyan page-focus"
+                    previousLinkClassName="page-link font-darkcyan page-focus"
+                    nextLinkClassName="page-link font-darkcyan page-focus"
+                    activeLinkClassName="btn-darkcyan"
                     pageCount={pageCount}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={3}
                     onPageChange={this.handlePageClick}
                 />
 
-                <div className={"d-flex justify-content-end pb-5"}>
-                    <Link className={"btn btn-darkcyan"} to={"/candles/add"}>Додади свеќа</Link>
-                </div>
+                {
+                    this.state.currentUser.role === "ROLE_ADMIN" ?
+                        <div className={"d-flex justify-content-end pb-5"}>
+                            <Link className={"btn btn-darkcyan"} to={"/candles/add"}>Додади свеќа</Link>
+                        </div> :
+                        <div className={"d-flex justify-content-end pb-5"}></div>
+                }
             </div>
         )
     }
@@ -81,12 +89,41 @@ class CandleList extends Component {
                         </ul>
                         <h6>{term.price} ден.</h6>
                         <button onClick={() => this.add(term.id)} className="btn btn-darkcyan float-end mt-auto">Додади во кошничка</button>
+                        {this.check(term.id)}
                     </div>
                 </div>
             )
         }).filter((candles, index) => {
             return index >= offset && index < nextPageOffset;
         })
+    }
+
+    async componentDidMount() {
+        const user = AuthService.getCurrentUser();
+
+        if (user) {
+            await this.setState({
+                currentUser: user
+            });
+        }
+    }
+
+    check = (id) => {
+        if (this.props.user.role === "ROLE_ADMIN") {
+            return (
+                <div className={"row d-block"}>
+                    <div className={"col-6 float-end mt-3"}>
+                        <Link className={"btn btn-danger"} to={"/candles"}
+                              onClick={() => this.props.onDelete(id)}>Избриши</Link>
+                    </div>
+                    <div className={"col-5 float-end mt-3"}>
+                        <Link className={"btn btn-info"}
+                              onClick={() => this.props.onEdit(id)}
+                              to={`/candles/edit/${id}`}>Промени</Link>
+                    </div>
+                </div>
+            )
+        }
     }
 }
 

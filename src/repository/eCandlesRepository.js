@@ -28,8 +28,24 @@ const ECandleRepository = {
             "candle": candle
         }, { headers: authHeader() })
     },
+    getCandle: (id) => {
+        return axios.get(`/candles/${id}`,
+            { headers: authHeader() })
+    },
     addCandle: (price, name, imgUrl, materials) => {
         return axios.post("/candles/add", {
+            "price": price,
+            "name": name,
+            "imgUrl": imgUrl,
+            "materials": materials
+        }, { headers: authHeader() })
+    },
+    deleteCandle: (id) => {
+        return axios.delete(`/candles/delete/${id}`,
+            { headers: authHeader() })
+    },
+    editCandle: (id, name, price, imgUrl, materials) => {
+        return axios.put(`/candles/edit/${id}`, {
             "price": price,
             "name": name,
             "imgUrl": imgUrl,

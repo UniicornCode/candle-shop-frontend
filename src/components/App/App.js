@@ -16,6 +16,7 @@ import EventBus from "../UserAuthentication/EventBus";
 import ProtectedRoute from "../UserAuthentication/ProtectedRoute";
 import SuggestionAdd from "../Suggestion/SuggestionAdd/suggestionAdd";
 import SuggestionList from "../Suggestion/SuggestionList/suggestionList";
+import CandleEdit from "../Candle/CandleEdit/candleEdit";
 
 class App extends Component {
 
@@ -23,6 +24,7 @@ class App extends Component {
         super(props);
         this.state = {
             candles: [],
+            selectedCandle: {},
             materials: [],
             roles: [],
             shoppingCart: [],
@@ -58,6 +60,9 @@ class App extends Component {
                                     <ProtectedRoute>
                                         <CandleList candles={this.state.candles}
                                                     materials={this.state.materials}
+                                                    user={this.state.currentUser}
+                                                    onDelete={this.deleteCandle}
+                                                    onEdit={this.getCandle}
                                                     addToCart={this.addToCart}/>
                                     </ProtectedRoute>
                                 }/>
@@ -66,6 +71,13 @@ class App extends Component {
                                         <CandleAdd candles={this.state.candles}
                                                    materials={this.state.materials}
                                                    onAddCandle={this.addCandle}/>
+                                    </ProtectedRoute>
+                                }/>
+                                <Route exact path={"/candles/edit/:id"} element={
+                                    <ProtectedRoute>
+                                        <CandleEdit selectedCandle={this.state.selectedCandle}
+                                                    materials={this.state.materials}
+                                                    onEditCandle={this.editCandle}/>
                                     </ProtectedRoute>
                                 }/>
                                 <Route exact path={"/shopping-cart"} element={
@@ -97,11 +109,11 @@ class App extends Component {
         );
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const user = AuthService.getCurrentUser();
 
         if (user) {
-            this.setState({
+            await this.setState({
                 currentUser: user
             });
         }
@@ -131,8 +143,7 @@ class App extends Component {
 
     register(username, name, surname, password, role, address) {
         ECandleRepository.registerUser(username, name, surname, password, role, address)
-            .then(() => {
-            })
+            .then(() => {})
     }
 
     loadCandles() {
@@ -212,6 +223,29 @@ class App extends Component {
 
     addSuggestion(text) {
         ECandleRepository.addSuggestion(text)
+            .then(() => {
+                window.location.reload();
+            })
+    }
+
+    deleteCandle = (id) => {
+        ECandleRepository.deleteCandle(id)
+            .then(() => {
+                window.location.reload();
+            })
+    }
+
+    getCandle = async (id) => {
+         ECandleRepository.getCandle(id)
+            .then(async (data) => {
+                await this.setState({
+                    selectedCandle: data.data
+                })
+            })
+    }
+
+    editCandle = (id, name, price, imgUrl, materials) => {
+        ECandleRepository.editCandle(id, name, price, imgUrl, materials)
             .then(() => {
                 window.location.reload();
             })
